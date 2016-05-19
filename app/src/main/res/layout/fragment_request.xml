@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:btn="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_input_message">
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/input_message"
+            android:hint="@string/hint_input_message"
+            android:imeOptions="actionNext"
+            android:maxLength="140"
+            android:inputType="text"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="{faw-facebook} Facebook"
+            android:theme="@style/AppTheme.Button.Facebook"
+            android:id="@+id/btn_req_facebook"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="{faw-twitter} Twitter"
+            android:theme="@style/AppTheme.Button.Twitter"
+            android:id="@+id/btn_req_twitter"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="{faw-envelope} SMS"
+            android:theme="@style/AppTheme.Button"
+            android:id="@+id/btn_req_sms"/>
+    </LinearLayout>
+
+</LinearLayout>

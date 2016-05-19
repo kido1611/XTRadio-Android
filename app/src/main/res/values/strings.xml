@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">XTRadio</string>
+
+    <string name="facebook_app_id">1521524018171640</string>
+
+    <string name="drawer_title_play">Play</string>
+    <string name="drawer_title_jadwal">Jadwal</string>
+    <string name="drawer_title_request">Request</string>
+    <string name="drawer_title_social_media">Social Media</string>
+    <string name="drawer_title_facebook">Facebook</string>
+    <string name="drawer_title_twitter">Twitter</string>
+    <string name="drawer_title_social">Social</string>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="connecting">Connecting</string>
+
+    <string name="hint_input_message">Request message</string>
+    <string name="hint_error_empty">Cannot empty</string>
+
+    <string name="play_lq">Play LQ</string>
+    <string name="play_hq">Play HQ</string>
+    <string name="stop">Stop</string>
+
+    <string name="success">Sukses</string>
+    <string name="failure">Failure</string>
+    <string name="sending">Sending</string>
+
+    <string name="warning_sending_twitter_protected">Sending via DM, you\'re protected user</string>
+
+</resources>

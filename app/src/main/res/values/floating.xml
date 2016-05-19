@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="fab_labels_style">
+        <item name="android:background">@drawable/fab_label_background</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <color name="accent_pressed">#ef6c00</color>
+
+</resources>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_centerInParent="true"
+        android:layout_margin="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_launcher_web"/>
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+        <!--<Button-->
+            <!--android:layout_width="0.0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1.0"-->
+            <!--android:text="@string/play_lq"-->
+            <!--android:id="@+id/btn_playLQ"-->
+            <!--style="@style/Widget.AppCompat.Button.Colored"/>-->
+        <!--<Button-->
+            <!--android:layout_width="0.0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1.0"-->
+            <!--android:text="@string/play_hq"-->
+            <!--android:id="@+id/btn_playHQ"-->
+            <!--style="@style/Widget.AppCompat.Button.Colored"/>-->
+    <!--</LinearLayout>-->
+    <!--<Button-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/stop"-->
+        <!--android:id="@+id/btn_stop"-->
+        <!--style="@style/Widget.AppCompat.Button.Colored"/>-->
+
+    <com.flask.floatingactionmenu.FloatingActionMenu
+        android:id="@+id/play_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        fab:fab_labelStyle="@style/fab_labels_style">
+
+        <com.flask.floatingactionmenu.FloatingActionButton
+            android:id="@+id/playLQ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_labelText="@string/play_lq"
+            fab:fab_normal_icon = "@mipmap/ic_launcher"
+            fab:fab_type="mini"
+            fab:fab_colorNormal="@color/accent"
+            fab:fab_colorPressed="@color/accent_pressed"/>
+
+        <com.flask.floatingactionmenu.FloatingActionButton
+            android:id="@+id/playHQ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_labelText="@string/play_hq"
+            fab:fab_normal_icon = "@mipmap/ic_launcher"
+            fab:fab_type="mini"
+            fab:fab_colorNormal="@color/accent"
+            fab:fab_colorPressed="@color/accent_pressed"/>
+
+        <com.flask.floatingactionmenu.FloatingActionToggleButton
+            android:id="@+id/fab_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            fab:fab_labelText="@string/drawer_title_play"
+            fab:fab_normal_icon="@drawable/ic_play"
+            fab:fab_toggle_icon="@drawable/ic_play"
+            fab:fab_colorNormal="@color/accent"
+            fab:fab_colorPressed="@color/accent_pressed"/>
+    </com.flask.floatingactionmenu.FloatingActionMenu>
+
+</RelativeLayout>

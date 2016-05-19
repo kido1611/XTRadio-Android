@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="visualizer_path_stroke_width">6.0dp</dimen>
+    <dimen name="visualizer_path_effect_1">6.0dp</dimen>
+    <dimen name="visualizer_path_effect_2">1.0dp</dimen>
+    <color name="visualizer_fill_color">@color/colorAccent</color>
+    <integer name="visualizer_divisions">4</integer>
+    <integer name="visualizer_db_fuzz_factor">2</integer>
+    <integer name="visualizer_db_fuzz">-10</integer>
+</resources>
