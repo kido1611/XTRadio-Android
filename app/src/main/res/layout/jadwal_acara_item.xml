@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:contentPadding="5dp"
+    app:cardCornerRadius="2dp"
+    android:layout_marginRight="2dp"
+    android:layout_marginLeft="2dp"
+    android:layout_marginTop="1dp"
+    android:layout_marginBottom="1dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/acara_title"
+            android:text="BMX"
+            android:textStyle="bold"
+            android:textSize="17sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/acara_keterangan"
+            android:text=""
+            android:textSize="17sp"
+            android:layout_toRightOf="@id/acara_title"
+            android:layout_marginLeft="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/acara_jam"
+            android:text="7.00-9.00"
+            android:textSize="14sp"
+            android:layout_below="@id/acara_title" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/acara_pj"
+            android:text=""
+            android:textSize="16sp"
+            android:layout_below="@id/acara_jam"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

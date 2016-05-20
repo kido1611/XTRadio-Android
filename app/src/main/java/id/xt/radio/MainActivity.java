@@ -68,6 +68,7 @@ import java.security.NoSuchAlgorithmException;
 import id.xt.radio.Utility.CrossfadeWrapper;
 import id.xt.radio.Utility.TwitterAPI;
 import id.xt.radio.fragment.FragmentFacebook;
+import id.xt.radio.fragment.FragmentJadwal;
 import id.xt.radio.fragment.FragmentPlay;
 import id.xt.radio.fragment.FragmentRequest;
 import id.xt.radio.fragment.FragmentTwitter;
@@ -261,7 +262,8 @@ public class MainActivity extends AppCompatActivity {
         if(identifier==1){
             fragment = new FragmentPlay();
         }else if(identifier==2){
-            fragment = FragmentWeb.newInstance("http://kido-serv.hol.es/xt");
+            //fragment = FragmentWeb.newInstance("http://kido-serv.hol.es/xt");
+            fragment = new FragmentJadwal();
         }else if(identifier==4){
             if(Profile.getCurrentProfile()!=null && AccessToken.getCurrentAccessToken()!=null){
                 fragment = new FragmentFacebook();
