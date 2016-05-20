@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">XTRadio</string>
+    <string name="app_name" translatable="false">XTRadio</string>
 
-    <string name="facebook_app_id">1521524018171640</string>
+    <string name="facebook_app_id" translatable="false">1521524018171640</string>
 
-    <string name="drawer_title_play">Play</string>
-    <string name="drawer_title_jadwal">Jadwal</string>
+    <string name="drawer_title_play" translatable="false">Radio</string>
+    <string name="drawer_title_jadwal">Schedule</string>
     <string name="drawer_title_request">Request</string>
     <string name="drawer_title_social_media">Social Media</string>
-    <string name="drawer_title_facebook">Facebook</string>
-    <string name="drawer_title_twitter">Twitter</string>
+    <string name="drawer_title_facebook" translatable="false">Facebook</string>
+    <string name="drawer_title_twitter" translatable="false">Twitter</string>
     <string name="drawer_title_social">Social</string>
 
     <string name="drawer_open">Open</string>
@@ -23,7 +23,7 @@
     <string name="play_hq">Play HQ</string>
     <string name="stop">Stop</string>
 
-    <string name="success">Sukses</string>
+    <string name="success">Success</string>
     <string name="failure">Failure</string>
     <string name="sending">Sending</string>
 

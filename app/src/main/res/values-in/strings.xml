@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="connecting">Menghubungkan</string>
+    <string name="drawer_close">Tutup</string>
+    <string name="drawer_open">Buka</string>
+    <string name="drawer_title_jadwal">Jadwal</string>
+    <string name="drawer_title_social">Sosial</string>
+    <string name="failure">Gagal</string>
+    <string name="drawer_title_social_media">Media sosial</string>
+    <string name="hint_error_empty">Tidak boleh kosong</string>
+    <string name="hint_input_message">Pesan atensi</string>
+    <string name="play_hq">Putar HQ</string>
+    <string name="play_lq">Putar LQ</string>
+    <string name="sending">Mengirim</string>
+    <string name="stop">Berhenti</string>
+    <string name="success">Sukses</string>
+    <string name="warning_sending_twitter_protected">Mengirim melalui DM, akun kamu terproteksi</string>
+    <string name="drawer_title_request">Atensi</string>
+</resources>
