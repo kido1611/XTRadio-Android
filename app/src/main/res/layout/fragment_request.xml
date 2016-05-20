@@ -17,7 +17,9 @@
             android:hint="@string/hint_input_message"
             android:imeOptions="actionNext"
             android:maxLength="140"
-            android:inputType="text" />
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:maxLines="5"/>
     </android.support.design.widget.TextInputLayout>
 
     <LinearLayout
