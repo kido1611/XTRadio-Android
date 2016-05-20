@@ -117,7 +117,7 @@ public class FragmentFacebook extends BaseFragment {
                     try {
                         if(response==null) return;
                         JSONObject responseObject = response.getJSONObject();
-
+                        if(responseObject==null) return;
                         JSONArray objectArray = responseObject.getJSONArray("data");
                         for(int i=0;i<objectArray.length();i++){
                             addFacebookFeed(objectArray.getJSONObject(i));

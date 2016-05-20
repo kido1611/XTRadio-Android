@@ -74,7 +74,7 @@ public class FragmentJadwal extends BaseFragment {
             Uri buildUri = Uri.parse(url).buildUpon().build();
 
             String jsonString = mJSONParser.makeHTTPRequest(buildUri, "GET");
-
+            if(jsonString==null) return null;
             try {
                 JSONObject obj = new JSONObject(jsonString);
                 return obj;
