@@ -15,6 +15,7 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.support.v4.content.LocalBroadcastManager;
 
 import java.io.IOException;
 
@@ -33,6 +34,8 @@ public class XTService extends Service
 
     private NotificationManager mNotificationManager;
     private NotificationCompat.Builder mNotif;
+
+    public static String XT_INTENT_STATE = "id.xt.radio.STATE";
 
     public static int currentState = 2;
     public static String XT_STATE = "state";
@@ -216,6 +219,11 @@ public class XTService extends Service
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+
+        Intent i = new Intent(XT_INTENT_STATE);
+        i.setAction(XT_INTENT_STATE);
+        i.putExtra(XT_STATE, state);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(i);
     }
 
     @Override

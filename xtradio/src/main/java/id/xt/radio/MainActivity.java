@@ -202,21 +202,26 @@ public class MainActivity extends AppCompatActivity {
 
         bindService();
 
-        if(Twitter.getSessionManager().getActiveSession()!=null){
-            new TwitterAPI(Twitter.getSessionManager().getActiveSession()).getCustomService().show(Twitter.getSessionManager().getActiveSession().getUserName(), new Callback<com.twitter.sdk.android.core.models.User>() {
-                @Override
-                public void success(Result<com.twitter.sdk.android.core.models.User> result) {
-                    mCurrentUser = result.data;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if(Twitter.getSessionManager().getActiveSession()!=null){
+                    new TwitterAPI(Twitter.getSessionManager().getActiveSession()).getCustomService().show(Twitter.getSessionManager().getActiveSession().getUserName(), new Callback<com.twitter.sdk.android.core.models.User>() {
+                        @Override
+                        public void success(Result<com.twitter.sdk.android.core.models.User> result) {
+                            mCurrentUser = result.data;
+                        }
+
+                        @Override
+                        public void failure(com.twitter.sdk.android.core.TwitterException exception) {
+
+                        }
+                    });
                 }
 
-                @Override
-                public void failure(com.twitter.sdk.android.core.TwitterException exception) {
-
-                }
-            });
-        }
-
-        setupVisualizer();
+                setupVisualizer();
+            }
+        }).start();
     }
 
     private void setupVisualizer(){
