@@ -100,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
         AppEventsLogger.newLogger(this).logEvent(message);
     }
 
-    View headerView;
-    ImageView imageHeader;
+//    View headerView;
+//    ImageView imageHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,10 +118,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        headerView = getLayoutInflater().inflate(R.layout.header, null, false);
-        imageHeader = (ImageView) headerView.findViewById(R.id.headerImage);
+        //headerView = getLayoutInflater().inflate(R.layout.header, null, false);
+        //imageHeader = (ImageView) headerView.findViewById(R.id.headerImage);
 
-        Picasso.with(this).load("http://kido1611.id/xt/allcrew.jpg").placeholder(R.drawable.header).into(imageHeader);
+        //Picasso.with(this).load("http://kido1611.id/xt/allcrew.jpg").placeholder(R.drawable.header).into(imageHeader);
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 .withToolbar(mToolbar)
                 .withActionBarDrawerToggle(true)
                 .withActionBarDrawerToggleAnimated(true)
-                .withHeader(headerView)
+                //.withHeader(headerView)
                 //.withDisplayBelowStatusBar(false)
                 .withTranslucentStatusBar(true)
                 .addDrawerItems(

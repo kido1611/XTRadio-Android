@@ -16,4 +16,6 @@
     <string name="success">Sukses</string>
     <string name="warning_sending_twitter_protected">Mengirim melalui DM, akun kamu terproteksi</string>
     <string name="drawer_title_request">Atensi</string>
+    <string name="jadwal_fetch_info">Mendapatkan daftar jadwal</string>
+    <string name="finish">Selesai</string>
 </resources>

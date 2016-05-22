@@ -202,7 +202,7 @@ public class FragmentFacebook extends BaseFragment {
         FacebookFeed feed = new FacebookFeed();
 
         FacebookFrom from = new FacebookFrom();
-        Log.v("Facebook XT", object.toString());
+        //Log.v("Facebook XT", object.toString());
 
         try {
             if(object.has("from")) {

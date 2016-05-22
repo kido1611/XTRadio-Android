@@ -26,7 +26,9 @@
     <string name="success">Success</string>
     <string name="failure">Failure</string>
     <string name="sending">Sending</string>
+    <string name="finish">Finish</string>
 
     <string name="warning_sending_twitter_protected">Sending via DM, you\'re protected user</string>
 
+    <string name="jadwal_fetch_info">Fetching schedule list</string>
 </resources>
