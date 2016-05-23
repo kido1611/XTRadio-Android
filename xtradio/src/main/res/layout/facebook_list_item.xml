@@ -27,20 +27,20 @@
                 android:layout_toRightOf="@id/profile_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="XT-FM"
+                android:singleLine="true"
                 android:textSize="20sp"
                 android:textColor="?attr/colorPrimary"
                 android:textStyle="bold"
                 android:layout_marginTop="2dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:ellipsize="end"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/timestamp_text"
                 android:layout_toRightOf="@id/profile_image"
                 android:layout_below="@id/name_text"
-                android:text="3 Mei pukul 9:01"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"/>
             <RelativeLayout
@@ -52,8 +52,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/status_text"
-                    android:text="Monday 7PM now on air bareng pj Oka, Reika, Rangga dan Cinta ^^\nMarilah"/>
+                    android:id="@+id/status_text" />
                 <ImageView
                     android:visibility="gone"
                     android:layout_below="@id/status_text"

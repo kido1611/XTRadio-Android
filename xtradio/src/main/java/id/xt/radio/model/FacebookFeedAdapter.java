@@ -1,6 +1,8 @@
 package id.xt.radio.model;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.facebook.login.widget.ProfilePictureView;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.List;
 
@@ -44,7 +47,7 @@ public class FacebookFeedAdapter extends RecyclerView.Adapter<FacebookFeedAdapte
     }
 
     @Override
-    public void onBindViewHolder(FacebookFeedViewHolder holder, int position) {
+    public void onBindViewHolder(final FacebookFeedViewHolder holder, int position) {
         FacebookFeed item = mItems.get(position);
 
         holder.mProfileImage.setProfileId(item.getFrom().getId());
@@ -63,10 +66,26 @@ public class FacebookFeedAdapter extends RecyclerView.Adapter<FacebookFeedAdapte
         holder.mLikeText.setText("{faw-thumbs_o_up} "+item.getLikes().size());
         holder.mShareText.setText("{faw-share} "+item.getShares());
 
-        if(item.getFull_picture()!=null ){
-            if(item.getType().equals("video") || item.getType().equals("photo")) {
-                Picasso.with(mContext).load(item.getFull_picture()).placeholder(R.mipmap.ic_launcher).into(holder.mStatusImage);
-                holder.mStatusImage.setVisibility(View.VISIBLE);
+        if(item.getType().equals("video") || item.getType().equals("photo")){
+            if(item.getFull_picture()!=null ) {
+                Picasso.with(mContext).load(item.getFull_picture()).placeholder(R.mipmap.ic_launcher).into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        holder.mStatusImage.setImageBitmap(bitmap);
+                        holder.mStatusImage.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onBitmapFailed(Drawable errorDrawable) {
+
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                    }
+                });
+                //Picasso.with(mContext).load(item.getFull_picture()).placeholder(R.mipmap.ic_launcher).into(holder.mStatusImage);
             }
         }else
             holder.mStatusImage.setVisibility(View.GONE);
