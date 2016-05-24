@@ -134,13 +134,19 @@ public class FragmentPlay extends BaseFragment {
         return rootView;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mReceiver);
+    }
+
     int state;
 
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().equals(XTService.XT_INTENT_STATE)){
-                state = intent.getIntExtra(XTService.XT_STATE, XTService.MP_STATE_STOP);
+                state = intent.getIntExtra(XTService.XT_STATE, -1);
                 if(state==XTService.MP_STATE_BUFFER){
                     mFabToggle.setEnabled(false);
                 }else
@@ -155,7 +161,6 @@ public class FragmentPlay extends BaseFragment {
         if(getService()!=null){
             try {
                 if(getService().isPlaying()){
-                    ((MainActivity)getActivity()).stopMusic();
                     //mFabToggle.toggleOff();
                     mFabToggle.setToggleIconDrawable(new IconicsDrawable(getActivity())
                             .icon(FontAwesome.Icon.faw_stop)

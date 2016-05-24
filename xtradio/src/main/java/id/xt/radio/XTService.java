@@ -126,7 +126,7 @@ public class XTService extends Service
 
         @Override
         public boolean isPlaying() throws RemoteException {
-            return play;
+            return play || mMediaPlayer!=null;
         }
 
         @Override
@@ -151,11 +151,10 @@ public class XTService extends Service
                 mMediaPlayer.release();
                 mMediaPlayer = null;
 
-                if(wifiLock.isHeld())
-                    wifiLock.release();
-
                 sendState(MP_STATE_STOP);
             }
+            if(wifiLock.isHeld())
+                wifiLock.release();
         }
 
         @Override

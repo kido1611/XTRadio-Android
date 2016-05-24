@@ -3,11 +3,13 @@ package id.xt.radio.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.telephony.SmsManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -36,6 +38,8 @@ import id.xt.radio.LoginActivity;
 import id.xt.radio.MainActivity;
 import id.xt.radio.R;
 import id.xt.radio.Utility.TwitterAPI;
+import id.xt.radio.Utility.telephony.SimUtils;
+import id.xt.radio.Utility.telephony.TelephonyInfo;
 import id.xt.radio.XTApplication;
 import twitter4j.DirectMessage;
 import twitter4j.TwitterFactory;
@@ -66,19 +70,30 @@ public class FragmentRequest extends BaseFragment {
     @BindView(R.id.input_message)
     TextInputEditText mTextMessage;
 
+//    @BindView(R.id.btn_req_sms_2)
+//    Button mBtnSMS2;
+
     private TwitterSession session;
     private Profile mProfile;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        session = Twitter.getSessionManager().getActiveSession();
-        mProfile = Profile.getCurrentProfile();
-    }
 
     String twitterTo = "XT_FM";
 
     private com.twitter.sdk.android.core.models.User mCurrentUser = null;
+
+//    private TelephonyInfo mTelephonyInfo = null;
+//    private SmsManager mSmsManager = null;
+	String mPhoneNumber = "081327760606";
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+//        mTelephonyInfo = TelephonyInfo.getInstance(getActivity());
+//        mSmsManager = SmsManager.getDefault();
+
+        session = Twitter.getSessionManager().getActiveSession();
+        mProfile = Profile.getCurrentProfile();
+    }
 
     @Nullable
     @Override
@@ -92,13 +107,14 @@ public class FragmentRequest extends BaseFragment {
         mBtnFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mProfile==null || AccessToken.getCurrentAccessToken()==null){
-                    Intent i = new Intent(getActivity(), LoginActivity.class);
-                    getActivity().startActivity(i);
-                }else{
-                    sendRequest(1);
-                    //postFb("Hello world");
-                }
+//                if(mProfile==null || AccessToken.getCurrentAccessToken()==null){
+//                    Intent i = new Intent(getActivity(), LoginActivity.class);
+//                    getActivity().startActivity(i);
+//                }else{
+//                    sendRequest(1);
+//                    //postFb("Hello world");
+//                }
+                showSnackBar(R.string.under_construction);
             }
         });
         mBtnSMS.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +123,12 @@ public class FragmentRequest extends BaseFragment {
                 sendRequest(3);
             }
         });
+//        mBtnSMS2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                sendRequest(4);
+//            }
+//        });
         mBtnTwitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -157,11 +179,32 @@ public class FragmentRequest extends BaseFragment {
         String message = mTextMessage.getText().toString();
 
         if(from==1){
-            postFb(message);
+            showSnackBar(R.string.under_construction);
+            //postFb(message);
         }else if(from==2){
             postTwitter(message);
-        }else{
-            showSnackBar("Under construction");
+        }else if(from==3){
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setType("vnd.android-dir/mms-sms");
+
+            i.putExtra("address", mPhoneNumber);
+            i.putExtra("sms_body", message);
+
+            startActivity(i);
+            messageInfo(true);
+        }
+//        else if(from==3){
+//            if(mTelephonyInfo.isDualSIM() && Build.VERSION.SDK_INT < 21 )
+//                new sendSMSDualSIM().execute(new SMSDualInfo(0, message, mPhoneNumber));
+//            else
+//                new sendSMS().execute(mPhoneNumber, message);
+//
+//            //showSnackBar("Under construction");
+//        }else if(from==4){
+//            new sendSMSDualSIM().execute(new SMSDualInfo(1, message, mPhoneNumber));
+//        }
+        else{
+            showSnackBar(R.string.error);
         }
 
     }
@@ -243,6 +286,72 @@ public class FragmentRequest extends BaseFragment {
             messageInfo(!(directMessage==null));
         }
     }
+
+//    class sendSMS extends AsyncTask<String, Integer, Void>{
+//
+//
+//		// String... params == params[] // array
+//		@Override
+//		protected Void doInBackground(String... params) {
+//			// TODO Auto-generated method stub
+//			// Send sms, (no hp, ...., pesan, ...., ....)
+//			mSmsManager.sendTextMessage(params[0], null, params[1], null, null);
+//			return null;
+//		}
+//
+//		@Override
+//		protected void onPostExecute(Void result) {
+//			// TODO Auto-generated method stub
+//			super.onPostExecute(result);
+//            showSnackBar(R.string.sms_request_sent);
+//		}
+//
+//	}
+//
+//	class sendSMSDualSIM extends AsyncTask<SMSDualInfo, Integer, Void>{
+//
+//
+//		// String... params == params[] // array
+//		@Override
+//		protected Void doInBackground(SMSDualInfo... params) {
+//			// TODO Auto-generated method stub
+//			// Send sms, (no hp, ...., pesan, ...., ....)
+//			SimUtils.sendSMS(getActivity(), params[0].getSIMId(), params[0].getPhoneNumber(), null, params[0].getMessage(), null, null);
+//			return null;
+//		}
+//
+//		@Override
+//		protected void onPostExecute(Void result) {
+//			// TODO Auto-generated method stub
+//			super.onPostExecute(result);
+//            showSnackBar(R.string.sms_request_sent);
+//		}
+//
+//	}
+//
+//	class SMSDualInfo{
+//		int simID;
+//		String message;
+//		String phoneNumber;
+//
+//		public SMSDualInfo(int simId, String message, String phoneNumber){
+//			this.simID = simId;
+//			this.message = message;
+//			this.phoneNumber = phoneNumber;
+//		}
+//
+//		public String getMessage(){
+//			return this.message;
+//		}
+//
+//		public String getPhoneNumber(){
+//			return this.phoneNumber;
+//		}
+//
+//		public int getSIMId(){
+//			return this.simID;
+//		}
+//	}
 
     private void requestFocus(View view) {
         if (view.requestFocus()) {

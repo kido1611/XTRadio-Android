@@ -285,6 +285,7 @@ public class MainActivity extends AppCompatActivity {
         }else if(identifier==6){
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
+            finish();
         }
 //        else{
 //            fragment = new MainActivityFragment();
@@ -292,15 +293,6 @@ public class MainActivity extends AppCompatActivity {
 
         if(fragment!=null){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
-        }
-    }
-
-    private void unBindService(){
-        unbindService(mConnection);
-        try {
-            printLog("Play : "+mService.isPlaying()+" service start : "+mService.isServiceStart());
-        } catch (RemoteException e) {
-            e.printStackTrace();
         }
     }
 
@@ -380,6 +372,14 @@ public class MainActivity extends AppCompatActivity {
         bindService(i, mConnection, Context.BIND_AUTO_CREATE);
         //bindService(i, mConnection, 0);
     }
+    private void unBindService(){
+        unbindService(mConnection);
+        try {
+            printLog("Play : "+mService.isPlaying()+" service start : "+mService.isServiceStart());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
 
     private ServiceConnection mConnection = new ServiceConnection() {
         @Override
@@ -397,7 +397,6 @@ public class MainActivity extends AppCompatActivity {
         public void onServiceDisconnected(ComponentName componentName) {
             mService = null;
             mBound = false;
-            Toast.makeText(MainActivity.this, "Unbind service", Toast.LENGTH_LONG).show();
         }
     };
 
@@ -418,10 +417,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showSnackbar(String message){
-        Snackbar.make(mCoordinatorLayout, message, Snackbar.LENGTH_LONG).show();
+        showSnackbar(message, Snackbar.LENGTH_LONG);
     }
     public void showSnackbar(String message, int length){
-        Snackbar.make(mCoordinatorLayout, message, length).show();
+        Snackbar snackbar = Snackbar.make(mCoordinatorLayout, message, length);
+        snackbar.getView().setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        snackbar.show();
     }
 
     @Override
