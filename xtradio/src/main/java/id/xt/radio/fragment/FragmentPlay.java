@@ -54,15 +54,6 @@ public class FragmentPlay extends BaseFragment {
     @BindView(R.id.fab_fading)
     RevealBackgroundView mFABFading;
 
-//    @BindView(R.id.btn_playHQ)
-//    Button mBtnPlayHQ;
-//
-//    @BindView(R.id.btn_playLQ)
-//    Button mBtnPlayLQ;
-//
-//    @BindView(R.id.btn_stop)
-//    Button mBtnStop;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,7 +87,6 @@ public class FragmentPlay extends BaseFragment {
                     try {
                         if(getService().isPlaying()){
                             ((MainActivity)getActivity()).stopMusic();
-                            //mFabToggle.toggleOff();
                         }else{
                             mFabToggle.toggle();
                         }
@@ -108,25 +98,6 @@ public class FragmentPlay extends BaseFragment {
         });
 
         updateState();
-
-//        mBtnPlayHQ.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ((MainActivity)getActivity()).playMusic(true);
-//            }
-//        });
-//        mBtnPlayLQ.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ((MainActivity)getActivity()).playMusic(true);
-//            }
-//        });
-//        mBtnStop.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ((MainActivity)getActivity()).stopMusic();
-//            }
-//        });
 
         IntentFilter intentFilter = new IntentFilter(XTService.XT_INTENT_STATE);
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mReceiver, intentFilter);
@@ -161,7 +132,6 @@ public class FragmentPlay extends BaseFragment {
         if(getService()!=null){
             try {
                 if(getService().isPlaying()){
-                    //mFabToggle.toggleOff();
                     mFabToggle.setToggleIconDrawable(new IconicsDrawable(getActivity())
                             .icon(FontAwesome.Icon.faw_stop)
                             .color(Color.WHITE)
