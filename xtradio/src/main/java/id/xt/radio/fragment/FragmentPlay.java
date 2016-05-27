@@ -65,7 +65,6 @@ public class FragmentPlay extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fragment_play, container, false);
         ButterKnife.bind(this, rootView);
 
-
         mFabMenu.setFadingBackgroundView(mFABFading);
         mPlayLQ.setOnClickListener(new View.OnClickListener() {
             @Override

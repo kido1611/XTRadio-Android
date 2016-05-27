@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "541063336638",
+    "firebase_url": "https://xt-radio.firebaseio.com",
+    "project_id": "xt-radio",
+    "storage_bucket": "xt-radio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541063336638:android:f16880987f9d092b",
+        "android_client_info": {
+          "package_name": "id.xt.radio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541063336638-i0035ebtri1ovndvh0uc1o4bs08revgv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCU59B1kBVaTNBCPSy39p5lOOYfaHpFwoE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

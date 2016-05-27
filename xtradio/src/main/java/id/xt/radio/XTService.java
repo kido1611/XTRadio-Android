@@ -176,7 +176,10 @@ public class XTService extends Service
     public void onPrepared(MediaPlayer mediaPlayer) {
         //play = true;
         mMediaPlayer.start();
-        wifiLock.acquire();
+
+        if(wifiLock!=null)
+            wifiLock.acquire();
+
         sendState(MP_STATE_PLAY);
     }
 
