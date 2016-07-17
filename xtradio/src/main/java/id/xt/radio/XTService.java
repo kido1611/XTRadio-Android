@@ -165,9 +165,16 @@ public class XTService extends Service
 
     @Override
     public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
-        mMediaPlayer.stop();
-        mMediaPlayer.release();
-        mMediaPlayer = null;
+        if(mMediaPlayer!=null){
+            mMediaPlayer.stop();
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
+        if(mediaPlayer!=null){
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
         sendState(MP_STATE_ERROR);
         return true;
     }

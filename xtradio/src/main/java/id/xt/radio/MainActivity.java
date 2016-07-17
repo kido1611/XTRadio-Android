@@ -36,6 +36,7 @@ import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
+import com.google.firebase.crash.FirebaseCrash;
 import com.mikepenz.crossfader.Crossfader;
 import com.mikepenz.crossfader.util.UIUtils;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
@@ -86,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar mToolbar;
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout mCoordinatorLayout;
-    @BindView(R.id.visualizer)
-    VisualizerView mVisualzer;
+//    @BindView(R.id.visualizer)
+//    VisualizerView mVisualzer;
 
     private AudioManager mAudioManager;
 
@@ -107,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconicsLayoutInflater(getDelegate()));
         super.onCreate(savedInstanceState);
+
+        FirebaseCrash.log("Starting XTRadio Android");
+        FirebaseCrash.report(new Exception("Starting XTRadio Android"));
 
         AppEventsLogger.activateApp(this);
         Answers.getInstance().logContentView(new ContentViewEvent()
@@ -219,41 +223,42 @@ public class MainActivity extends AppCompatActivity {
                     });
                 }
 
-                setupVisualizer();
+                //setupVisualizer();
             }
         }).start();
     }
 
-    private void setupVisualizer(){
-        mAudioManager.isMusicActive();
-        mVisualzer.link(0);
-
-        Paint mVisualizerPaint;
-        TileBarGraphRenderer mTileBar;
-
-        mVisualizerPaint = new Paint();
-        mVisualizerPaint.setStrokeWidth(getResources().getDimensionPixelSize(R.dimen.visualizer_path_stroke_width));
-        mVisualizerPaint.setAntiAlias(true);
-        mVisualizerPaint.setColor(getResources().getColor(R.color.visualizer_fill_color));
-        mVisualizerPaint.setPathEffect(new android.graphics.DashPathEffect(new float[]{
-                getResources().getDimensionPixelSize(R.dimen.visualizer_path_effect_1),
-                getResources().getDimensionPixelSize(R.dimen.visualizer_path_effect_2)
-        }, 0));
-        mTileBar = new TileBarGraphRenderer (
-                getResources().getInteger(R.integer.visualizer_divisions),
-                mVisualizerPaint,
-                getResources().getInteger(R.integer.visualizer_db_fuzz),
-                getResources().getInteger(R.integer.visualizer_db_fuzz_factor));
-
-        mVisualzer.addRenderer(mTileBar);
-    }
+//    private void setupVisualizer(){
+//        mAudioManager.isMusicActive();
+//        mVisualzer.link(0);
+//
+//        Paint mVisualizerPaint;
+//        TileBarGraphRenderer mTileBar;
+//
+//        mVisualizerPaint = new Paint();
+//        mVisualizerPaint.setStrokeWidth(getResources().getDimensionPixelSize(R.dimen.visualizer_path_stroke_width));
+//        mVisualizerPaint.setAntiAlias(true);
+//        mVisualizerPaint.setColor(getResources().getColor(R.color.visualizer_fill_color));
+//        mVisualizerPaint.setPathEffect(new android.graphics.DashPathEffect(new float[]{
+//                getResources().getDimensionPixelSize(R.dimen.visualizer_path_effect_1),
+//                getResources().getDimensionPixelSize(R.dimen.visualizer_path_effect_2)
+//        }, 0));
+//        mTileBar = new TileBarGraphRenderer (
+//                getResources().getInteger(R.integer.visualizer_divisions),
+//                mVisualizerPaint,
+//                getResources().getInteger(R.integer.visualizer_db_fuzz),
+//                getResources().getInteger(R.integer.visualizer_db_fuzz_factor));
+//
+//        mVisualzer.addRenderer(mTileBar);
+//    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         AppEventsLogger.deactivateApp(this);
         unBindService();
-        mVisualzer.release();
+//        if(mVisualzer!=null)
+//            mVisualzer.release();
     }
 
     private void openDisplay(IDrawerItem item){
