@@ -170,11 +170,6 @@ public class XTService extends Service
             mMediaPlayer.release();
             mMediaPlayer = null;
         }
-        if(mediaPlayer!=null){
-            mediaPlayer.stop();
-            mediaPlayer.release();
-            mediaPlayer = null;
-        }
         sendState(MP_STATE_ERROR);
         return true;
     }

@@ -109,8 +109,8 @@ public class MainActivity extends AppCompatActivity {
         LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconicsLayoutInflater(getDelegate()));
         super.onCreate(savedInstanceState);
 
-        FirebaseCrash.log("Starting XTRadio Android");
-        FirebaseCrash.report(new Exception("Starting XTRadio Android"));
+//        FirebaseCrash.log("Starting XTRadio Android");
+//        FirebaseCrash.report(new Exception("Starting XTRadio Android"));
 
         AppEventsLogger.activateApp(this);
         Answers.getInstance().logContentView(new ContentViewEvent()
