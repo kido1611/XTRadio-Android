@@ -22,6 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.xt.radio.R;
 import id.xt.radio.Utility.JSONParser;
+import id.xt.radio.database.JadwalDBHelper;
 import id.xt.radio.model.FacebookFeed;
 import id.xt.radio.model.JadwalAcaraItem;
 import id.xt.radio.model.JadwalAdapter;
@@ -45,6 +46,7 @@ public class FragmentJadwal extends BaseFragment {
     private List<JadwalItem> mItems = new ArrayList<>();
 
     private JSONParser mJSONParser;
+    private JadwalDBHelper mJadwalHelper;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +54,14 @@ public class FragmentJadwal extends BaseFragment {
         mJadwalAdapter = new JadwalAdapter(getActivity(), mItems);
 
         mJSONParser = new JSONParser();
+        mJadwalHelper = new JadwalDBHelper(getActivity());
+        mJadwalHelper.attachDB();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mJadwalHelper.detachDB();
     }
 
     @Nullable
@@ -63,9 +73,23 @@ public class FragmentJadwal extends BaseFragment {
         mJadwalList.setAdapter(mJadwalAdapter);
         mJadwalList.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
 
+        addJadwalFromDB(true);
+
         new FetchJadwal().execute();
 
         return rootView;
+    }
+
+    private void addJadwalFromDB(boolean clear){
+        if(clear)mItems.clear();
+        if(!mJadwalHelper.getJadwal().isEmpty()){
+            mItems.add(mJadwalHelper.getJadwalByHari("Senin"));
+            mItems.add(mJadwalHelper.getJadwalByHari("Selasa"));
+            mItems.add(mJadwalHelper.getJadwalByHari("Rabu"));
+            mItems.add(mJadwalHelper.getJadwalByHari("Kamis"));
+            mItems.add(mJadwalHelper.getJadwalByHari("Jum'at"));
+            mJadwalAdapter.notifyDataSetChanged();
+        }
     }
 
     class FetchJadwal extends AsyncTask<Void, Void, JSONObject>{
@@ -94,11 +118,14 @@ public class FragmentJadwal extends BaseFragment {
                 if(jsonObject.getInt("sukses")==0) return;
 
                 JSONArray jadwalList = jsonObject.getJSONArray("data");
-                for(int i=0;i<jadwalList.length();i++){
-                    JSONObject obj = jadwalList.getJSONObject(i);
-                    fetchJadwalItem(obj);
+                if(jadwalList.length()>0) {
+                    mJadwalHelper.deleteRecord();
+                    for (int i = 0; i < jadwalList.length(); i++) {
+                        JSONObject obj = jadwalList.getJSONObject(i);
+                        fetchJadwalItem(obj);
+                    }
+                    addJadwalFromDB(true);
                 }
-                mJadwalAdapter.notifyDataSetChanged();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -119,11 +146,12 @@ public class FragmentJadwal extends BaseFragment {
                     itemAcara.setStartAcara(acaraobj.getString("startClock"));
                     itemAcara.setFinishAcara(acaraobj.getString("finishClock"));
                     itemAcara.setPj(acaraobj.getString("pj"));
+                    itemAcara.setHari(obj.getString("hari"));
 
                     item.addAcara(itemAcara);
                 }
+                mJadwalHelper.addJadwalByHari(item);
 
-                mItems.add(item);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

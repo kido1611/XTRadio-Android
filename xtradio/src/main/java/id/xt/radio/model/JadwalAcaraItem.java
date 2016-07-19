@@ -9,6 +9,15 @@ public class JadwalAcaraItem {
     String startAcara;
     String finishAcara;
     String pj;
+    String hari;
+
+    public String getHari() {
+        return hari;
+    }
+
+    public void setHari(String hari) {
+        this.hari = hari;
+    }
 
     public JadwalAcaraItem(){
 
